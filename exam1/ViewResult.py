@@ -5,11 +5,11 @@ def ViewScatter(points):
     y = [p[1] for p in points]
     # plt.xlim((-5, 120))
     # plt.ylim((-5, 130))
-    plt.scatter(x, y, color='y')
+    plt.scatter(x, y, color='y', s=2., alpha=0.5)
     # plt.hold()
     # plt.show()
 
-def ViewConvexhull(convexhull, color, label):
+def ViewConvexhull(convexhull, color, label, linewidth):
     m = min(convexhull, key=lambda x:x[1])
     c = convexhull.copy()
     for i in range(len(c)):
@@ -28,7 +28,7 @@ def ViewConvexhull(convexhull, color, label):
     y = [p[1] for p in rankedConvexhull]
     # plt.xlim((-5, 120))
     # plt.ylim((-5, 130))
-    l, = plt.plot(x, y, color=color, label=label)
+    l, = plt.plot(x, y, color=color, label=label, linewidth=linewidth)
     # plt.hold(True)
     # plt.legend((l[0],), (label,), loc=1)
     # plt.hold()
@@ -43,11 +43,19 @@ def Viewallresult(size, datalist, ch, color, label):
     plt.ylim((-5, 130))
     ViewScatter(datalist)
     drawturn = [i for i in range(len(ch))]
+    linewidths = [3.-i for i in range(len(ch))]
     # drawturn = [2, 0, 1]
     # chlines = [ViewConvexhull(ch[i], color[i], label[i]) for i in range(len(ch))]
-    chlines = [ViewConvexhull(ch[i], color[i], label[i]) for i in drawturn]
+    chlines = [ViewConvexhull(ch[drawturn[i]], color[drawturn[i]], label[drawturn[i]], linewidths[i]) for i in range(len(drawturn))]
     newlabel = [label[i] for i in drawturn]
     plt.legend(chlines, newlabel, loc=1)
+
+    mk = ['o', '^', 'x', 's', '>', 'p', '<', 'v', '*']
+    for i in range(len(drawturn)):
+        x = [p[0] for p in ch[drawturn[i]]]
+        y = [p[1] for p in ch[drawturn[i]]]
+        plt.scatter(x, y, marker=mk[drawturn[i]], color=color[drawturn[i]], s=linewidths[i]*20+30)
+
 
 def ViewTimeExpense(algorithmkinds, size, timeonsize, color, label):
     plt.figure()

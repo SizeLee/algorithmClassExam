@@ -217,12 +217,12 @@ if __name__ == '__main__':
     ch = gsa.findConvexHull(data)
     plt.figure()
     ViewResult.ViewScatter(data.data)
-    ViewResult.ViewConvexhull(ch, 'b', 'gsa')
+    ViewResult.ViewConvexhull(ch, 'b', 'gsa', 2.0)
     # plt.show()
     plt.figure()
     ch = gsa.DivideConquerFindCH(data)
     ViewResult.ViewScatter(data.data)
-    ViewResult.ViewConvexhull(ch, 'g', 'dcgsa')
+    ViewResult.ViewConvexhull(ch, 'g', 'dcgsa', 2.0)
     plt.show()
 
 

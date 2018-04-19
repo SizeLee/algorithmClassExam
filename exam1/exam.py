@@ -53,11 +53,34 @@ class ConvexHullExam:
 
         plt.show()
 
+    def AnalysisNoBruteForce(self):
+        timeonsize = []
+        for eachsize in self.__dataSize:
+            # chb, timeb = self.__runBruteForce(eachsize)
+            chg, timeg = self.__runGrahamScan(eachsize)
+            chdcg, timedcg = self.__runDCGScan(eachsize)
+            timeonsize.append((timeg, timedcg))
+            ViewResult.Viewallresult(eachsize, self.__data[eachsize].data, (chg, chdcg),
+                                     ('g', 'b'), ('GrahamScan', 'Divide-Conquer'))
+
+        for i in range(2):
+            ViewResult.ViewSingleTimeExpense(i, self.__dataSize, timeonsize,
+                                   ('g', 'r'), ('GrahamScan', 'Divide-Conquer'))
+
+        ViewResult.ViewTimeExpense(2, self.__dataSize, timeonsize,
+                                   ('g', 'r'), ('GrahamScan', 'Divide-Conquer'))
+
+        plt.show()
+
 if __name__ == '__main__':
     # datasize = [i*100 for i in range(1, 21)]
-    datasize = [i*1000 for i in range(1, 11)]
+    datasize = [i*100 for i in range(1, 10)] + [i*1000 for i in range(1, 11)]
     e = ConvexHullExam(datasize, (0, 100), (0, 100))
     e.Analysis()
+
+    # datasize2 = [i*10000 for i in range(1, 16)]
+    # e2 = ConvexHullExam(datasize2, (0, 100), (0, 100))
+    # e2.AnalysisNoBruteForce()
 
     # ba = BruteForce.BruteForceAlgorithm()
     # gsa = GrahamScan.GranhamScanAlgorithm()
