@@ -66,11 +66,17 @@ def ViewTimeExpense(algorithmkinds, size, timeonsize, color, label):
         plt.scatter(size, [t[i] for t in timeonsize])
         lines.append(l)
         # for j in range(len(size)):
-        #     plt.text(size[j]-0.5, timeonsize[j][i], '{}'.format(round(timeonsize[j][i], 2)))
+        #     plt.text(size[j]-0.5, timeonsize[j][i], '{}'.format(round(timeonsize[j][i], 3)))
 
     plt.xlabel('data size')
     plt.ylabel('time expense')
     plt.legend(lines, label, loc=1)
+
+    for i in range(algorithmkinds):
+        print('Time expense of {} algorithm:'.format(label[i]))
+        for j in range(len(size)):
+            print('Time on size of {}: {}s'.format(size[j], timeonsize[j][i]))
+        print()
 
 def ViewSingleTimeExpense(algorithmID, size, timeonsize, color, label):
     plt.figure()
@@ -78,6 +84,6 @@ def ViewSingleTimeExpense(algorithmID, size, timeonsize, color, label):
     l, = plt.plot(size, [t[algorithmID] for t in timeonsize], color=color[algorithmID])
     plt.scatter(size, [t[algorithmID] for t in timeonsize])
     for j in range(len(size)):
-        plt.text(size[j]-0.5, timeonsize[j][algorithmID], '{}'.format(round(timeonsize[j][algorithmID], 2)))
+        plt.text(size[j]-0.5, timeonsize[j][algorithmID], '{}'.format(round(timeonsize[j][algorithmID], 3)))
     plt.xlabel('data size')
     plt.ylabel('time expense')

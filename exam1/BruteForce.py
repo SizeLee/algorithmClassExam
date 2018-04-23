@@ -142,5 +142,5 @@ if __name__ == '__main__':
 
     ch = ba.findConvexHull(data)
     ViewResult.ViewScatter(data.data)
-    ViewResult.ViewConvexhull(ch)
+    ViewResult.ViewConvexhull(ch, 'b', 'ba', 2.0)
     plt.show()
