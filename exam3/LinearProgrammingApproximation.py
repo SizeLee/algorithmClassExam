@@ -1,6 +1,7 @@
 from pulp import *
 from exam3 import DataGenerator
-import time, random
+import time
+import random
 
 class LinearProgrammingApproximationAlgorithm:
     def __init__(self):

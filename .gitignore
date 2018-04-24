@@ -8,6 +8,7 @@
 # data file 
 *.csv
 *.json
+*.mps
 
 # draft file for test grammer
 draft.py
