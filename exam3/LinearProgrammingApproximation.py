@@ -15,7 +15,12 @@ class LinearProgrammingApproximationAlgorithm:
         w = [1 for _ in range(len(data.F))]
         prob += lpDot(w, xs)
         for i in range(len(data.X)):
-            prob += lpDot(a[i], xs) >= 1
+            express = 0
+            for j in n:
+                if a[i][j] == 1:
+                    express += xs[j]
+            prob += express >= 1
+            # prob += lpDot(a[i], xs) >= 1
 
         prob.solve()
         # for i in n:
@@ -36,7 +41,12 @@ class LinearProgrammingApproximationAlgorithm:
         w = [1 for _ in range(len(data.F))]
         prob += lpDot(w, xs)
         for i in range(len(data.X)):
-            prob += lpDot(a[i], xs) >= 1
+            express = 0
+            for j in n:
+                if a[i][j] == 1:
+                    express += xs[j]
+            prob += express >= 1
+            # prob += lpDot(a[i], xs) >= 1
 
         prob.solve()
         C = []

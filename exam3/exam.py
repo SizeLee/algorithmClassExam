@@ -76,6 +76,13 @@ class SetCoverExam:
         for eachsize in self.__datasize:
             print('\tTime on data size of {}: {}s'.format(eachsize, ti[eachsize][index]))
             print('\tSolution of data size {} is:\n \t{}'.format(eachsize, c[eachsize][index]))
+            u = set()
+            for each in c[eachsize][index]:
+                u = u.union(each)
+            u = list(u)
+            u.sort()
+            print('\tSolution covers element:\n \t{}'.format(u))
+            print('\tcovers {} elements'.format(len(u)))
             print('\tcost of solution is: {}\n'.format(len(c[eachsize][index])))
 
         print()
@@ -84,7 +91,7 @@ class SetCoverExam:
 
 if __name__ == '__main__':
     datasize = [100, 1000, 5000]
-    datasize = [100, 200, 300, 400]
+    # datasize = [100, 200, 300, 400]
     e = SetCoverExam(datasize)
     e.analysis()
 
